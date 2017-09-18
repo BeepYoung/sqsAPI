@@ -3,6 +3,7 @@
 
 class Request {
 public:
+//	Request() = delete;
 private:
 	float generationTime;
 	std::pair<int, int> number;

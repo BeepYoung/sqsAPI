@@ -2,11 +2,11 @@
 #define GETTING_MANAGER_H
 
 #include "Buffer.h"
+#include "Request.h"
 
 class GettingManagerP {
 public:
-	virtual void chooseDevice() = 0;
-	virtual void chooseRequest(Buffer& buffer) = 0;
+	virtual Request getRequest(Buffer& buffer) = 0;
 
 };
 

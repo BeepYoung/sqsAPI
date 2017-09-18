@@ -2,33 +2,24 @@
 #define BUFFER_H
 
 #include <vector>;
+#include <memory>
 
-#include "HoldStrategy.h"
 #include "Request.h"
 
 class Buffer {
 public:
 	Buffer() = delete;
-	Buffer(const HoldStrategy& holdStrategy):
-	holdStrategy(holdStrategy){
-	}
 
-	virtual void setStrategy(const HoldStrategy holdStrategy) final {
-		this->holdStrategy = holdStrategy;
-	}
-	virtual std::vector<Request>& getClaster() final{
-		return claster;
-	}
+	virtual Request getElement() = 0;
+	virtual bool putElement(Request request) = 0;
 
-	virtual void putElement(Request& request) = 0;
-	virtual Request& digElement() = 0;
-	virtual bool isFull() = 0;
-	virtual bool isEmpty() = 0;
-	virtual void processRequest(Request& request) = 0;
+	virtual bool isEmpty() final;
+	virtual bool isFull() final;
 	
+
 private:
 	std::vector<Request> claster;
-	HoldStrategy holdStrategy;
+	int size;
 };
 
 #endif // BUFFER_H

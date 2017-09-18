@@ -4,11 +4,11 @@
 #include <iostream>
 
 #include "Request.h"
+#include "Buffer.h"
 
 class SettingManager {
 public:
-	virtual void sendRequest() = 0; //includes decline
-	virtual void doSomething(int x) = 0;
+	virtual void sendRequest(Buffer& buffer) = 0;
 };
 
 #endif

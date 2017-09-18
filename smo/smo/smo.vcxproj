@@ -140,14 +140,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
+    <ClInclude Include="CircleBuffer.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="GettingManager.h" />
     <ClInclude Include="HoldStrategy.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="SettingManager.h" />
     <ClInclude Include="Source.h" />
+    <ClInclude Include="Sqs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="smo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

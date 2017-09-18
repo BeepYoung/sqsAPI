@@ -5,7 +5,9 @@
 
 class Device {
 public:
-	virtual void process(Request) = 0;
+	virtual float process(Request) = 0;
+private:
+	
 };
 
 #endif
