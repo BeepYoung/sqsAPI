@@ -21,9 +21,6 @@
     <ClInclude Include="Request.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Buffer.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
@@ -31,6 +28,12 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="HoldStrategy.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GettingManager.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingManager.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
