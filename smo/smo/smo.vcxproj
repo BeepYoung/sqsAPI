@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
-    <ClInclude Include="CircleBuffer.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="GettingManager.h" />
     <ClInclude Include="HoldStrategy.h" />
@@ -152,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="Request.cpp" />
     <ClCompile Include="smo.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>

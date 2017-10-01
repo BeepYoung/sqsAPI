@@ -1,5 +1,5 @@
 ﻿#ifndef SOURCE_H
-#define SOUTCE_H
+#define SOURCE_H
 
 //1.Источник
 //1.1.Генерирует время появления заявки
@@ -11,9 +11,13 @@
 
 class Source {
 public:
-	virtual Request generate();
+	Source(int lambda, int sourceNumber);
+	Request generate();
 private:
+	int sourceNumber;
+	int generateCounter;
 	int lambda;
+	float generationTime;
 };
 
 #endif // !SOURCE_H

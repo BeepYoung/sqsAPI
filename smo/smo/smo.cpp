@@ -35,15 +35,25 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <utility>
 
-#include "Buffer.h"
+//#include "Buffer.h"
 #include "Sqs.h"
 #include "Request.h"
-
+#include "Source.h"
 
 int main() {
-	
+	std::shared_ptr<Source> src(new Source(14, 14));
+	std::pair<int, int> somePair;
 
+	//Request req (float(15.1), std::pair<int, int>(3, 15));
+
+	
+//	std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
+	for (int i = 0; i < 50; i++) {
+		Request req = src->generate();
+		std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
+	}
 
 	std::cout << "Hey!\n";
 	system("pause");
