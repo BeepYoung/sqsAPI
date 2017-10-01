@@ -1,5 +1,11 @@
 #include "Request.h"
 
+Request::Request() {
+	generationTime = -1;
+	number.first = -1;
+	number.second = -1;
+}
+
 Request::Request(float genTime, std::pair<int, int> number) {
 	this->generationTime = genTime;
 	this->number = number;

@@ -9,7 +9,8 @@ typedef int RequestNum;
 
 class Request {
 public:
-	Request() = delete;
+//	Request() = delete;
+	Request(); //fake request
 	Request(float genTime,std::pair<int,int> number);
 	Request(Request& req);
 	Request getRequest();
