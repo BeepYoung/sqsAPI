@@ -5,11 +5,21 @@
 //кольцевого буфера и переместить bufferPtr на следующий слот. Фейк реквест является таковым при req.getGenerationTime() == -1
 
 
-#include <vector>;//Нужно выбрать удобный контейнер + реализовать буфер(скорее всего list)
+//Нужно выбрать удобный контейнер + реализовать буфер(скорее всего list)
 #include <list> 
 #include <memory>
 
 #include "Request.h"
+
+//КЛАСТЬ ЭЛЕМЕНТЫ В СЕБЯ ОН НЕ УМЕЕТ
+//ЗАБИРАТЬ САМ У СЕБЯ ЭЛЕМЕНТЫ ТОЖЕ НЕ УМЕЕТ
+
+//Должен хранить эл-ты и давать
+//необходимый функционал
+//для менеджеров постановки в буфер
+//и выборки с буфера
+
+typedef std::list<Request>::iterator Iterator;
 
 class Buffer {
 public:
@@ -17,16 +27,17 @@ public:
 	Buffer(int size);
 
 	Request getElement();
-	bool putElement(Request request);
+
 
 	bool isEmpty();
-	bool isFull();
-	
+	bool isFull();//est' li mesto
+	Iterator getCurrentPtr();//@returns current iterator
+	Iterator getBufferPtr();//returns bufferPtr
 
 private:
 	std::list<Request> claster;
 	int size;
-	int bufferPtr;
+	Iterator bufferPtr;
 };
 
 #endif // BUFFER_H

@@ -5,9 +5,11 @@
 
 class Device {
 public:
-	virtual float process(Request) = 0;
+	virtual float process(Request);
 private:
-	
+	float vacationTime;
 };
 
 #endif
+
+//(random/rand_max)*(b-a)+a

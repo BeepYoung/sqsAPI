@@ -2,7 +2,8 @@
 
 Buffer::Buffer(int size) {
 	this->size = size;
-	bufferPtr = 0;
+	claster.resize(size);
+	this->bufferPtr = claster.begin();
 }
 
 bool Buffer::isEmpty() {
@@ -10,6 +11,12 @@ bool Buffer::isEmpty() {
 }
 
 bool Buffer::isFull() {
+	//можно придумать что-то
+	// с итератором
 	return (claster.size() == size) ? true : false;
 }
 
+
+Request Buffer::getElement() {
+	return Request(1, std::pair<int, int>(1, 1));
+}

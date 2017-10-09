@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="GettingManager.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="smo.cpp" />
     <ClCompile Include="Source.cpp" />

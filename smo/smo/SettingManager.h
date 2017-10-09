@@ -8,7 +8,15 @@
 
 class SettingManager {
 public:
-	virtual void sendRequest(Buffer& buffer) = 0;
+	void sendRequest(Buffer& buffer);
+	void putElement(Iterator it);
 };
 
 #endif
+
+//Ставит заявки в буфер
+// буфер должен предоставить функционал
+//для опрелеления состояния
+//есть ли место isFull()
+//если есть то ставим на свободное
+//если нет то кикаем заявку и помещаем новую

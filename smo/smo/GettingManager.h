@@ -1,13 +1,44 @@
 #ifndef GETTING_MANAGER_H
 #define GETTING_MANAGER_H
 
+#include<iostream>
+#include<memory>
+#include<vector>
+
 #include "Buffer.h"
 #include "Request.h"
+#include "Device.h"
+//много девайсов один менеджер
 
-class GettingManagerP {
+typedef std::vector<Device> DeviceContainer;
+
+class GettingManager {
 public:
-	virtual Request getRequest(Buffer& buffer) = 0;
-
+	void getRequest(DeviceContainer device,Buffer& buffer);
 };
 
 #endif
+
+//должен выбирать за€вку на которую 
+//выбрать на прибор
+//прибор и буфер должны предосавить 
+//необходимый функционал
+
+//прибор:
+//какой приоритет источника
+//буффер:
+//какой приоритет источника
+
+//смотрим приоритет источника на данный момент
+//провер€ем есть и в буфере за€вки от данного
+//источника. “ак до тех пор пока не выберем
+//нужную за€вку.
+//
+//1. ѕробегаем по девайсам и выбираем приоритет
+//2. —мотрим есть ли в буфере за€вки с таким приоритетом
+//3.1 ≈сли есть, то выбираем ее на прибор
+//3.2 ≈сли нет, то выбираем следующий приоритет
+//по буферу.
+//
+//p.s. девайс выбираетс€ по приоритету номера 
+//девайса
