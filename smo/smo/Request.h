@@ -1,6 +1,9 @@
 #ifndef REQUEST_H
 #define REQUEST_H
 
+#define SOURCE_NUM first
+#define REQUEST_NUM second
+
 #include <utility>
 #include <iostream>
 

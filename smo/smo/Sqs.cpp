@@ -25,13 +25,13 @@ void Sqs::work()
 	system("pause");
 
 	for (int requestCounter = 0; requestCounter < requestCount; requestCounter++) {
-		int currentSrs = earliestSourceNumber(sources);
-		Request currentReq = sources.at(currentSrs).generate();
-		sources.at(currentSrs).clk();
+		int currentSrc = earliestSourceNumber(sources);
+		Request currentReq = sources.at(currentSrc).generate();
+		sources.at(currentSrc).clk();
 
 		SettingManager settingDispatcher;
 		settingDispatcher.putElement(buffer, currentReq);
-		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().first << "\t" << currentReq.getNumber().second << "\n";
+		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().SOURCE_NUM << "\t" << currentReq.getNumber().REQUEST_NUM << "\n";
 	}
 }
 
