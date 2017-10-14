@@ -19,6 +19,8 @@
 //для менеджеров постановки в буфер
 //и выборки с буфера
 
+enum state_t {EMPTY, FILLED, FULL};
+
 typedef std::list<Request>::iterator Iterator;
 
 class Buffer {

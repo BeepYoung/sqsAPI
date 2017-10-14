@@ -8,10 +8,12 @@
 #include <cmath>
 
 #include "Request.h"
-
+//@TODO
+//Generator
 class Source {
 public:
 	Source(int lambda, int sourceNumber);
+	//generate some req
 	Request generate();
 private:
 	int sourceNumber;

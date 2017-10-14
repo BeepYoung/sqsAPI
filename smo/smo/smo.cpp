@@ -42,17 +42,79 @@
 #include "Request.h"
 #include "Source.h"
 
+template<typename T>
+void printVector(std::vector<T> data) {
+	for (size_t i = 0; i < data.size(); i++) {
+		std::cout << data.at(i) << "\n";
+	}
+}
+
+template<typename T>
+void printVector2(std::vector<T> data, std::vector<T> data1) {
+	for (size_t i = 0; i < data.size(); i++) {
+		std::cout << data.at(i) << "\t" << data1.at(i) << "\n";
+	}
+}
+
+void printVector3(std::vector<Request> data, std::vector<Request> data1) {
+	for (size_t i = 0; i < data.size(); i++) {
+		std::cout << data.at(i).getGenerationTime() << "\t\t" << data1.at(i).getGenerationTime() << "\n";
+	}
+}
+
 int main() {
 	std::shared_ptr<Source> src(new Source(14, 14));
 	std::pair<int, int> somePair;
 
 	//Request req (float(15.1), std::pair<int, int>(3, 15));
+	typedef std::shared_ptr<Source> Source_t;
+
+	std::vector<Source_t> sources;
+	for (int i = 0; i < 15; i++) {
+		sources.push_back(Source_t(new Source(rand() % 5, i)));
+	}
+	
+	Source_t src1(new Source(1, 1));// лямбда = 1
+	Source_t src2(new Source(50, 2));//lyambda = 50
+	std::vector<Request> rec1;
+	std::vector<Request> rec2;
 
 	
-//	std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
+	//Мы генерируем время на всех src, потом смотрим какое из них получилось самое маленькое
+	//Берем его в обработку(забираем заявку с таким временем), генерим на нем же новое t
+	//опять смотрим самое маленькое и т.д. еееееееее рок
+	//Это делает диспетчер постановки в буфер
+	
+	// тактом работы СМО является генерация новой заявки. В ээтот момент производятся
+	//некоторые операции во всех ее частях:
+	//		1.Обработка попадания в буфер
+	//		2.Обработка выбора на прибор
+	//		
+	//
+	//
+	//
+	//
+	//
+	//
 	for (int i = 0; i < 50; i++) {
+
+		rec1.push_back(src1->generate());
+		rec2.push_back(src2->generate());
+	}
+
+	printVector3(rec1, rec2);
+
+//	std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
+	/*for (int i = 0; i < 50; i++) {
 		Request req = src->generate();
 		std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
+	}
+*/
+	if (FULL == 1) {
+		std::cout << "Yes\n";
+	}
+	else {
+		std::cout << FULL<<"\n";
 	}
 
 	std::cout << "Hey!\n";
