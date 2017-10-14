@@ -31,6 +31,7 @@ void Sqs::work()
 
 		SettingManager settingDispatcher;
 		settingDispatcher.putElement(buffer, currentReq);
+		std::cout.precision(4);
 		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().SOURCE_NUM << "\t" << currentReq.getNumber().REQUEST_NUM << "\n";
 	}
 }
