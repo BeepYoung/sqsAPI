@@ -14,7 +14,7 @@ typedef std::vector<Device> DeviceContainer;
 
 class GettingManager {
 public:
-	void getRequest(DeviceContainer device,Buffer& buffer);
+	void getRequest(DeviceContainer devices,Buffer& buffer);
 };
 
 #endif

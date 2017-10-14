@@ -19,20 +19,26 @@ Sqs::Sqs(int sourceCounter, int bufferSize, int deviceCounter, int requestCount)
 	this->requestCount = requestCount;
 }
 
-void Sqs::work() 
+void Sqs::work()
 {
-	std::cout << "generate requests\n";
-	system("pause");
+	//std::cout << "generate requests\n";
+	//system("pause");
+
+	SettingManager settingDispatcher;
+	GettingManager gettingDispatcher;
 
 	for (int requestCounter = 0; requestCounter < requestCount; requestCounter++) {
 		int currentSrc = earliestSourceNumber(sources);
 		Request currentReq = sources.at(currentSrc).generate();
 		sources.at(currentSrc).clk();
 
-		SettingManager settingDispatcher;
+
 		settingDispatcher.putElement(buffer, currentReq);
-		std::cout.precision(4);
+		/*std::cout.precision(4);
 		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().SOURCE_NUM << "\t" << currentReq.getNumber().REQUEST_NUM << "\n";
+		*/
+		gettingDispatcher.getRequest(devices, buffer);
+		//statcenter??? getStatistics(buffer,devices,sources)???
 	}
 }
 

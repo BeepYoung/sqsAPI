@@ -1,6 +1,6 @@
 #include "GettingManager.h"
 
 
-void GettingManager::getRequest(DeviceContainer device, Buffer& buffer) {
+void GettingManager::getRequest(DeviceContainer devices, Buffer& buffer) {
 
 }

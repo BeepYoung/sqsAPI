@@ -11,6 +11,7 @@
 #include "Buffer.h"
 #include "Device.h"
 #include "SettingManager.h"
+#include "GettingManager.h"
 
 class Sqs {
 public:
