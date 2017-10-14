@@ -151,10 +151,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="Device.cpp" />
     <ClCompile Include="GettingManager.cpp" />
     <ClCompile Include="Request.cpp" />
+    <ClCompile Include="SettingManager.cpp" />
     <ClCompile Include="smo.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Sqs.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

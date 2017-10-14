@@ -8,8 +8,8 @@
 
 class SettingManager {
 public:
-	void sendRequest(Buffer& buffer);
-	void putElement(Iterator it);
+	void putElement(Buffer& buffer, Request req);
+
 };
 
 #endif
@@ -20,3 +20,4 @@ public:
 //есть ли место isFull()
 //если есть то ставим на свободное
 //если нет то кикаем заявку и помещаем новую
+

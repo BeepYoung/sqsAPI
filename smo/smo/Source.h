@@ -14,7 +14,16 @@ class Source {
 public:
 	Source(int lambda, int sourceNumber);
 	//generate some req
-	Request generate();
+	Request generate();//USING CURRENT TIME
+	
+
+
+
+	void clk();//generate generationTime
+	float getGenerationTime();
+
+
+
 private:
 	int sourceNumber;
 	int generateCounter;

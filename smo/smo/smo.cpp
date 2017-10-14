@@ -63,23 +63,10 @@ void printVector3(std::vector<Request> data, std::vector<Request> data1) {
 }
 
 int main() {
-	std::shared_ptr<Source> src(new Source(14, 14));
-	std::pair<int, int> somePair;
 
-	//Request req (float(15.1), std::pair<int, int>(3, 15));
-	typedef std::shared_ptr<Source> Source_t;
+	Sqs sqs(50, 5, 2, 10000);
+	sqs.work();
 
-	std::vector<Source_t> sources;
-	for (int i = 0; i < 15; i++) {
-		sources.push_back(Source_t(new Source(rand() % 5, i)));
-	}
-	
-	Source_t src1(new Source(1, 1));// л€мбда = 1
-	Source_t src2(new Source(50, 2));//lyambda = 50
-	std::vector<Request> rec1;
-	std::vector<Request> rec2;
-
-	
 	//ћы генерируем врем€ на всех src, потом смотрим какое из них получилось самое маленькое
 	//Ѕерем его в обработку(забираем за€вку с таким временем), генерим на нем же новое t
 	//оп€ть смотрим самое маленькое и т.д. еееееееее рок
@@ -90,34 +77,7 @@ int main() {
 	//		1.ќбработка попадани€ в буфер
 	//		2.ќбработка выбора на прибор
 	//		
-	//
-	//
-	//
-	//
-	//
-	//
-	for (int i = 0; i < 50; i++) {
 
-		rec1.push_back(src1->generate());
-		rec2.push_back(src2->generate());
-	}
-
-	printVector3(rec1, rec2);
-
-//	std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
-	/*for (int i = 0; i < 50; i++) {
-		Request req = src->generate();
-		std::cout << req.getGenerationTime() << "\t" << req.getNumber().first << "\t" << req.getNumber().second << "\n";
-	}
-*/
-	if (FULL == 1) {
-		std::cout << "Yes\n";
-	}
-	else {
-		std::cout << FULL<<"\n";
-	}
-
-	std::cout << "Hey!\n";
 	system("pause");
 }
 
