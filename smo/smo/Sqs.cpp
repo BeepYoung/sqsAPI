@@ -37,7 +37,7 @@ void Sqs::work()
 		/*std::cout.precision(4);
 		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().SOURCE_NUM << "\t" << currentReq.getNumber().REQUEST_NUM << "\n";
 		*/
-		gettingDispatcher.getRequest(devices, buffer,sourceCounter);
+	//	gettingDispatcher.getRequest(devices, buffer,sourceCounter);
 		//statcenter??? getStatistics(buffer,devices,sources)???
 	}
 //	buffer.printBuffer();

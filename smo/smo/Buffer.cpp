@@ -73,6 +73,7 @@ void Buffer::incrementBufPtr(Iterator& bufferPtr)
 }
 
 void Buffer::setElement(Request req) {
+	std::cout << "Request seted: srcNum  " << req.getSourceNum() << "\t reqNum" << req.getRequestNum() << "\t genTime " << req.getGenerationTime() << "\n";
 	for (int i = 0; i < size; i++) {
 		if (bufferPtr->isFake()) {
 			*bufferPtr = req;
@@ -81,6 +82,7 @@ void Buffer::setElement(Request req) {
 		}
 		incrementBufPtr(bufferPtr);
 	}
+	std::cout << "KICKED: srcNum  " << bufferPtr->getSourceNum() << "\t reqNum" << bufferPtr->getRequestNum() << "\t genTime " << bufferPtr->getGenerationTime() << "\n";
 	*bufferPtr = req;
 	incrementBufPtr(bufferPtr);
 }

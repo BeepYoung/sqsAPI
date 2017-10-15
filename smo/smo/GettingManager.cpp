@@ -16,14 +16,14 @@ void GettingManager::getRequest(DeviceContainer& devices, Buffer& buffer, int so
 		for (int i = 0; i < devices.size(); i++) {
 			if (isPriorityInBuffer(buffer, currSourcePriority)) {
 				devices.at(currDeviceNum).process(buffer.getElementWithPrior(currSourcePriority));
-				std::cout <<"currsource prior  "<< currSourcePriority << "\n";
+		//		std::cout <<"currsource prior  "<< currSourcePriority << "\n";
 				return;
 			}
 			currSourcePriority = findCurrSourcePriority(devices, currSourcePriority);
 		}
 
 		currSourcePriority = buffer.getHighestPriority();
-		std::cout << "currsource prior  " << currSourcePriority << "\n";
+	//	std::cout << "currsource prior  " << currSourcePriority << "\n";
 		devices.at(currDeviceNum).process(buffer.getElementWithPrior(currSourcePriority));
 	}
 	else {

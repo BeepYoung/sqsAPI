@@ -15,7 +15,7 @@ void Device::process(Request req) {
 	this->currentRequest = req;
 	float randInt = (float)(rand() % 99 + 1) / (float)100.0;
 	vacationTime += float(randInt*(b-a)+ float(a));
-	std::cout << "devNum: " <<deviceNumber << "\t" <<"srcNum:"<<currentRequest.getSourceNum()<<"\t"<< vacationTime << "\n";
+//	std::cout << "devNum: " <<deviceNumber << "\t" <<"srcNum:"<<currentRequest.getSourceNum()<<"\t"<< vacationTime << "\n";
 }
 
 float Device::getVacationTime() {
