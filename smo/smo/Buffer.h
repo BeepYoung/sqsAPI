@@ -6,6 +6,7 @@
 
 
 //Нужно выбрать удобный контейнер + реализовать буфер(скорее всего list)
+#include <iostream>
 #include <list> 
 #include <memory>
 
@@ -28,14 +29,17 @@ public:
 	Buffer() = delete;
 	Buffer(int size);
 
+	void setElement(Request req);
 	Request getElement();
-
+	void printBuffer();
 
 	bool isEmpty();
 	bool isFull();//est' li mesto
 	Iterator getCurrentPtr();//@returns current iterator
 	Iterator getBufferPtr();//returns bufferPtr
 
+	Iterator& operator++();// prefix increment (++it)
+	Iterator operator++(int);  // postfix increment (it++)
 private:
 	std::list<Request> claster;
 	int size;

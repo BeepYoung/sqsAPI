@@ -26,7 +26,7 @@ void Sqs::work()
 
 	SettingManager settingDispatcher;
 	GettingManager gettingDispatcher;
-
+	buffer.printBuffer();
 	for (int requestCounter = 0; requestCounter < requestCount; requestCounter++) {
 		int currentSrc = earliestSourceNumber(sources);
 		Request currentReq = sources.at(currentSrc).generate();
