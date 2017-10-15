@@ -19,6 +19,10 @@ public:
 	Request getRequest();
 	float getGenerationTime();
 	std::pair<SourceNum, RequestNum> getNumber();
+	int getSourceNum();
+	int getRequestNum();
+	void setFake();
+	bool isFake();
 private:
 	float generationTime;
 	std::pair<SourceNum, RequestNum> number;

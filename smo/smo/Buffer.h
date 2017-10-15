@@ -23,6 +23,7 @@
 enum state_t {EMPTY, FILLED, FULL};
 
 typedef std::list<Request>::iterator Iterator;
+typedef Iterator BufferPtrIter;
 
 class Buffer {
 public:
@@ -30,20 +31,20 @@ public:
 	Buffer(int size);
 
 	void setElement(Request req);
-	Request getElement();
+	Request getElementWithPrior(int sourceNum);
 	void printBuffer();
 
 	bool isEmpty();
 	bool isFull();//est' li mesto
-	Iterator getCurrentPtr();//@returns current iterator
+	bool isReqPriorThere(int sourceNum);
 	Iterator getBufferPtr();//returns bufferPtr
-
-	Iterator& operator++();// prefix increment (++it)
-	Iterator operator++(int);  // postfix increment (it++)
+	int getHighestPriority();
+	
 private:
 	std::list<Request> claster;
 	int size;
 	Iterator bufferPtr;
+	void incrementBufPtr(Iterator& bufferPtr);
 };
 
 #endif // BUFFER_H

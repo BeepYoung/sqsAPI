@@ -28,3 +28,20 @@ std::pair<SourceNum, RequestNum> Request::getNumber() {
 	return number;
 }
 
+bool Request::isFake() {
+	return (number.first == -1);
+}
+
+void Request::setFake() {
+	generationTime = -1;
+	number.first = -1;
+	number.second = -1;
+}
+
+int Request::getSourceNum() {
+	return number.first;
+}
+
+int Request::getRequestNum() {
+	return number.second;
+}

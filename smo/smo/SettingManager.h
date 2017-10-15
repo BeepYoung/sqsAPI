@@ -9,7 +9,6 @@
 class SettingManager {
 public:
 	void putElement(Buffer& buffer, Request req);
-
 };
 
 #endif

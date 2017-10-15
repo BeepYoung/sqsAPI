@@ -22,10 +22,29 @@ bool Buffer::isFull()
 	return (claster.size() == size) ? true : false;
 }
 
+bool Buffer::isReqPriorThere(int sourceNum) {
+	Iterator it = bufferPtr;
+	for (int i = 0; i < size; i++) {
+		if (it->getSourceNum() == sourceNum) {
+			return true;
+		}
+		incrementBufPtr(it);
+	}
+	return false;
+}
 
-Request Buffer::getElement() 
+Request Buffer::getElementWithPrior(int sourceNum)
 {
-	return Request(1, std::pair<int, int>(1, 1));
+	for (int i = 0; i < size; i++) {
+		if (bufferPtr->getSourceNum() == sourceNum) {
+			Request wantedReq = bufferPtr->getRequest();
+			bufferPtr->setFake();
+			incrementBufPtr(bufferPtr);
+			return wantedReq;
+		}
+		incrementBufPtr(bufferPtr);
+	}
+//	printBuffer();
 }
 
 void Buffer::printBuffer()
@@ -33,32 +52,45 @@ void Buffer::printBuffer()
 	for (Iterator it = claster.begin(); it != claster.end(); it++) {
 		std::cout << it->getNumber().first << "\t" << it->getNumber().second << "\t" << it->getGenerationTime() << "\n";
 	}
-	std::cout << claster.size();
+//	std::cout << claster.size();
 	std::cout << "\n";
 }
 
-Iterator& Buffer::operator++() {
-	Iterator next = bufferPtr;
-	next++;
-	if (next == claster.end()) {
-		bufferPtr = claster.begin();
-		return bufferPtr;
-	}
-	else {
-		return bufferPtr++;
-	}
+Iterator Buffer::getBufferPtr() {
+	return bufferPtr;
 }
 
-Iterator Buffer::operator++(int)
+void Buffer::incrementBufPtr(Iterator& bufferPtr)
 {
 	Iterator next = bufferPtr;
 	next++;
-	if (next == claster.end()) {
+	if (next == claster.end()){
 		bufferPtr = claster.begin();
-		return bufferPtr;
 	}
 	else {
-		return bufferPtr++;
+		bufferPtr++;
 	}
 }
 
+void Buffer::setElement(Request req) {
+	for (int i = 0; i < size; i++) {
+		if (bufferPtr->isFake()) {
+			*bufferPtr = req;
+			incrementBufPtr(bufferPtr);
+			return;
+		}
+		incrementBufPtr(bufferPtr);
+	}
+	*bufferPtr = req;
+	incrementBufPtr(bufferPtr);
+}
+
+int Buffer::getHighestPriority() {
+	int x = bufferPtr->getSourceNum();
+	for (Iterator it = claster.begin(); it != claster.end(); it++) {
+		if (it->getSourceNum() < x) {
+			x = it->getSourceNum();
+		}
+	}
+	return x;
+}

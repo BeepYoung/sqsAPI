@@ -11,6 +11,7 @@ Source::Source(int lambda, int sourceNumber) {
 
 Request Source::generate() {//3
 	generateCounter++;//generatedRequestsCounter
+//	std::cout << "gen time: " << generationTime<<"\n";
 	return Request(generationTime,std::pair<int,int>(sourceNumber,generateCounter));
 }
 

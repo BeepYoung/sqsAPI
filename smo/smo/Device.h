@@ -11,10 +11,14 @@ public:
 	Device(int a, int b,int deviceNumber);
 	void process(Request);
 	float getVacationTime();
+	int getDeviceNumber();
+	int getCurrentSourceNum();
+	bool isFree();
 private:
 	float vacationTime;
 	int a, b;
 	int deviceNumber;
+	Request currentRequest;
 };
 
 #endif
