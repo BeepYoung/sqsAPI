@@ -8,23 +8,19 @@
 
 void GettingManager::getRequest(DeviceContainer& devices, Buffer& buffer, int sourceNum) {
 
-	currSourcePriority = findCurrSourcePriority(devices);
 	currDeviceNum = firstAvailableDeviceNum(devices);
+	currSourcePriority = devices.at(currDeviceNum).getCurrentSourceNum();
 	//проверка на синхронизацию времени
 	if (devices.at(currDeviceNum).getVacationTime() < buffer.getBufferPtr()->getGenerationTime()) {
-		
-		for (int i = 0; i < devices.size(); i++) {
-			if (isPriorityInBuffer(buffer, currSourcePriority)) {
-				devices.at(currDeviceNum).process(buffer.getElementWithPrior(currSourcePriority));
-		//		std::cout <<"currsource prior  "<< currSourcePriority << "\n";
-				return;
-			}
-			currSourcePriority = findCurrSourcePriority(devices, currSourcePriority);
+		if (isPriorityInBuffer(buffer, currSourcePriority)) {
+			Request currReq = buffer.getElementWithPrior(currSourcePriority);
+			devices.at(currDeviceNum).process(currReq);
 		}
-
-		currSourcePriority = buffer.getHighestPriority();
-	//	std::cout << "currsource prior  " << currSourcePriority << "\n";
-		devices.at(currDeviceNum).process(buffer.getElementWithPrior(currSourcePriority));
+		else {
+			currSourcePriority = buffer.getHighestPriority();
+			Request currReq = buffer.getElementWithPrior(currSourcePriority);
+			devices.at(currDeviceNum).process(currReq);
+		}
 	}
 	else {
 		return;
@@ -70,4 +66,5 @@ int GettingManager::findCurrSourcePriority(DeviceContainer devices, int currPrio
 bool GettingManager::isPriorityInBuffer(Buffer& buffer, int priority) {
 	return buffer.isReqPriorThere(priority);
 }
+
 

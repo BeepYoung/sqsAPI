@@ -1,7 +1,7 @@
 #include "Sqs.h"
 
 
-Sqs::Sqs(int sourceCounter, int bufferSize, int deviceCounter, int requestCount):buffer(bufferSize)
+Sqs::Sqs(int sourceCounter, int bufferSize, int deviceCounter, int requestCount):buffer(bufferSize,sourceCounter)
 	,sourceCounter(sourceCounter)
 	,bufferSize(bufferSize)
 	,deviceCounter(deviceCounter)

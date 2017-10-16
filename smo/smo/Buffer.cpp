@@ -1,8 +1,9 @@
 #include "Buffer.h"
 
-Buffer::Buffer(int size)
+Buffer::Buffer(int size, int sourceNum)
 {
 	this->size = size;
+	this->currPackPriority = 1;
 	this->bufferPtr = claster.begin();
 	for (int i = 0; i < size; i++) {
 		claster.push_back(Request());
@@ -33,6 +34,10 @@ bool Buffer::isReqPriorThere(int sourceNum) {
 	return false;
 }
 
+bool Buffer::isPackFinished() {
+	return packIndexes.size() == 0;
+}
+
 Request Buffer::getElementWithPrior(int sourceNum)
 {
 	for (int i = 0; i < size; i++) {
@@ -54,6 +59,15 @@ void Buffer::printBuffer()
 	}
 //	std::cout << claster.size();
 	std::cout << "\n";
+}
+
+void Buffer::generatePack() {
+	currPackPriority = getHighestPriority();
+	for (Iterator it = claster.begin(); it != claster.end(); it++) {
+		if (it->getSourceNum() == currPackPriority) {
+			packIndexes.push_back(it);
+		}
+	}
 }
 
 Iterator Buffer::getBufferPtr() {
