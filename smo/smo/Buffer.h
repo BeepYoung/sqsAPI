@@ -32,12 +32,11 @@ public:
 	Buffer(int size,int sourceNum);
 
 	void setElement(Request req);
-	Request getElementWithPrior(int sourceNum);
+	Request getElement();
+	/*Request getElementWithPrior(int sourceNum);*/
 	void printBuffer();
 
-	bool isEmpty();
-	bool isFull();//est' li mesto
-	bool isReqPriorThere(int sourceNum);
+	/*bool isReqPriorThere(int sourceNum);*/
 	bool isPackFinished();
 	Iterator getBufferPtr();//returns bufferPtr
 	int getHighestPriority();
@@ -45,11 +44,13 @@ public:
 	
 private:
 	std::vector<Request> claster;
-	std::vector<Iterator> packIndexes;
+	std::vector<int> packIndexes;
 	int size;
 	Iterator bufferPtr;
 	void incrementBufPtr(Iterator& bufferPtr);
 	int currPackPriority;
+	int sourceNum;
+	//bool isInPack(int Index);
 };
 
 #endif // BUFFER_H

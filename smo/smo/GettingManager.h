@@ -18,10 +18,10 @@ public:
 	void getRequest(DeviceContainer& devices,Buffer& buffer, int sourceNum);
 private:
 	int firstAvailableDeviceNum(DeviceContainer devices);
-	int findCurrSourcePriority(DeviceContainer devices,int currPrior = -1);
-	bool isPriorityInBuffer(Buffer& buffer, int priority);
+//	int findCurrSourcePriority(DeviceContainer devices,int currPrior = -1);
+//	bool isPriorityInBuffer(Buffer& buffer, int priority);
 	int currDeviceNum;
-	int currSourcePriority;
+//	int currSourcePriority;
 	int sourceCount;
 };
 

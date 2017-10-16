@@ -12,8 +12,9 @@ Sqs::Sqs(int sourceCounter, int bufferSize, int deviceCounter, int requestCount)
 		sources.at(i).clk();		//система начинает раобту здесь
 	}
 	for (int i = 0; i < deviceCounter; i++) {
-		int randIntA = rand() % 5 + 1;
-		int randIntB = rand() % 5 + 1;
+		int randIntA = 1;//(rand() % 100) + 1;
+		int randIntB = 2;//(rand() % 200) + 1;
+	//	std::cout << "rand a " << randIntA << "\tb " << randIntB << "\n";
 		devices.push_back(Device(randIntA, randIntB, i));
 	}
 	this->requestCount = requestCount;
@@ -26,7 +27,7 @@ void Sqs::work()
 
 	SettingManager settingDispatcher;
 	GettingManager gettingDispatcher;// (devices, buffer, sourceCounter);
-	buffer.printBuffer();
+	//buffer.printBuffer();
 	for (int requestCounter = 0; requestCounter < requestCount; requestCounter++) {
 		int currentSrc = earliestSourceNumber(sources);
 		Request currentReq = sources.at(currentSrc).generate();
@@ -37,7 +38,7 @@ void Sqs::work()
 		/*std::cout.precision(4);
 		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().SOURCE_NUM << "\t" << currentReq.getNumber().REQUEST_NUM << "\n";
 		*/
-	//	gettingDispatcher.getRequest(devices, buffer,sourceCounter);
+		gettingDispatcher.getRequest(devices, buffer,sourceCounter);
 		//statcenter??? getStatistics(buffer,devices,sources)???
 	}
 //	buffer.printBuffer();
