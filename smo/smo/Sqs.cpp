@@ -28,6 +28,7 @@ void Sqs::work()
 	SettingManager settingDispatcher;
 	GettingManager gettingDispatcher;// (devices, buffer, sourceCounter);
 	//buffer.printBuffer();
+	std::cout << "\n";
 	for (int requestCounter = 0; requestCounter < requestCount; requestCounter++) {
 		int currentSrc = earliestSourceNumber(sources);
 		Request currentReq = sources.at(currentSrc).generate();
@@ -38,8 +39,15 @@ void Sqs::work()
 		/*std::cout.precision(4);
 		std::cout << currentReq.getGenerationTime() << "\t" << currentReq.getNumber().SOURCE_NUM << "\t" << currentReq.getNumber().REQUEST_NUM << "\n";
 		*/
-		gettingDispatcher.getRequest(devices, buffer,sourceCounter);
+		
+		float availableTime = devices.at(gettingDispatcher.firstAvailableDeviceNum(devices)).getVacationTime();
+
+		if (currentReq.getGenerationTime() > availableTime) {
+			buffer.printBuffer();
+			gettingDispatcher.getRequest(devices, buffer, sourceCounter);
+		}
 		//statcenter??? getStatistics(buffer,devices,sources)???
+		std::cout << "COUNTER REQUESTS IN SYSTEM = " << requestCounter << "\n";
 	}
 //	buffer.printBuffer();
 }

@@ -64,10 +64,13 @@ void printVector3(std::vector<Request> data, std::vector<Request> data1) {
 }
 
 int main() {
-
-	Sqs sqs(5, 5, 20, 10);
-	sqs.work();
-
+	try {
+		Sqs sqs(5, 5, 20, 10000);
+		sqs.work();
+	}
+	catch (std::exception& ex) {
+		std::cerr<<ex.what() <<"\n";
+	}
 
 	//Мы генерируем время на всех src, потом смотрим какое из них получилось самое маленькое
 	//Берем его в обработку(забираем заявку с таким временем), генерим на нем же новое t

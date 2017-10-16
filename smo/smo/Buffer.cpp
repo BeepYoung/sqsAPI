@@ -64,6 +64,9 @@ void Buffer::generatePack() {
 			}
 		}
 	}
+	for (int i = 0; i < packIndexes.size(); i++) {
+		std::cout <<"source number in claster "<< claster.at(packIndexes.at(i)).getSourceNum() << "\n";
+	}
 }
 
 Iterator Buffer::getBufferPtr() {
@@ -109,17 +112,32 @@ int Buffer::getHighestPriority() {
 
 Request Buffer::getElement() {
 	if (!isPackFinished()) {
-		Request req = claster.at(packIndexes.at(packIndexes.size()));
-		claster.at(packIndexes.at(packIndexes.size())).setFake();
-		packIndexes.pop_back();
-		return req;
+		try {
+			Request req = claster.at(packIndexes.back());
+			//		std::cout << "req with gen time and src " << req.getGenerationTime() << "\t" << req.getSourceNum() << "\n";
+			claster.at(packIndexes.back()).setFake();
+			packIndexes.pop_back();
+			//		std::cout << "req with gen time and src after pop" << req.getGenerationTime() << "\t" << req.getSourceNum()<<"\n";
+			return req;
+		}
+		catch(std::exception& ex){
+			throw std::exception("filledPack exception");
+		}
 	}
 	else {
+		try{
 		generatePack();
-		Request req = claster.back();
+		Request req = claster.at(packIndexes.back());
+//		std::cout << "req with gen time and src  " << req.getGenerationTime() << "\t" << req.getSourceNum() << "\n";
 		claster.at(packIndexes.back()).setFake();
 		packIndexes.pop_back();
+//		std::cout << "req with gen time and src after pop " << req.getGenerationTime() << "\t" << req.getSourceNum() << "\n";
 		return req;
+		}
+		catch (std::exception& ex) {
+			throw std::exception("filledPack exception");
+		}
 	}
+
 	return Request();
 }

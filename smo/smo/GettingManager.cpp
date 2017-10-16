@@ -9,16 +9,10 @@
 void GettingManager::getRequest(DeviceContainer& devices, Buffer& buffer, int sourceNum) {
 
 	currDeviceNum = firstAvailableDeviceNum(devices);
-	//проверка на синхронизацию времени
-	if (devices.at(currDeviceNum).getVacationTime() < buffer.getBufferPtr()->getGenerationTime()) {
+	//std::cout << "vac time dev  " << devices.at(currDeviceNum).getVacationTime() << "\tgenTime  " << buffer.getBufferPtr()->getGenerationTime() << "\n";
+	//buffer.printBuffer();
+
 		devices.at(currDeviceNum).process(buffer.getElement());
-	}
-	else {
-		return;
-	}
-
-	
-
 	
 }
 
