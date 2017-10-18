@@ -65,7 +65,7 @@ void printVector3(std::vector<Request> data, std::vector<Request> data1) {
 
 int main() {
 	try {
-		Sqs sqs(5, 5, 20, 10000);
+		Sqs sqs(5, 5, 20, 100);
 		sqs.work();
 	}
 	catch (std::exception& ex) {
